@@ -83,7 +83,7 @@ const Home = () => {
           id="Home"
         >
           <div className="tb:text-6xl sp:text-5xl xs:text-3xl text-2xl font-semibold mb-5">
-            Shota Kawasaki's
+            Shota Kawasaki&apos;s
           </div>
           <div className="tb:text-6xl sp:text-5xl xs:text-3xl  font-semibold">
             Profile
