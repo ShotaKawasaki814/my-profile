@@ -1,11 +1,13 @@
 import Layout from "../layout/layout";
 
 type CareerContentsType = {
+  id: number;
   date: string;
   content: string;
 }[];
 
 type skillContentsType = {
+  id: number;
   firstIcon: string;
   secondIcon?: string;
   skill: string;
@@ -16,21 +18,25 @@ type skillContentsType = {
 const Home = () => {
   const careerContents: CareerContentsType = [
     {
+      id: 1,
       date: "2022年1月",
       content:
         "社会経験を身に付けたく、株式会社エス・エム・エスに長期インターンで入社",
     },
     {
+      id: 2,
       date: "2022年5月",
       content:
         "近くでビジネスを見ることができ、広い事業範囲に関われる環境を望み、ホンダモビリティソリューションズ株式会社に長期インターンで入社",
     },
     {
+      id: 3,
       date: "2023年1月",
       content:
         "IT業界で働くビジネスマンとして開発側の視点を持つことを目標に、ITスキルをつけることを目指し独学でRailsを学ぶ",
     },
     {
+      id: 4,
       date: "2023年3月",
       content:
         "実務経験を積むため、フロントエンドエンジニアとしてSky株式会社に長期インターンで入社",
@@ -39,6 +45,7 @@ const Home = () => {
 
   const skillContents: skillContentsType = [
     {
+      id: 1,
       firstIcon: "/html.svg",
       secondIcon: "/css.svg",
       skill: "html・css",
@@ -46,6 +53,7 @@ const Home = () => {
         "様々なタグやスタイルを用いて、デザイン通りUIを実装できます。",
     },
     {
+      id: 2,
       firstIcon: "/javascript.svg",
       secondIcon: "/typescript.svg",
       skill: "JavaScript・TypeScript",
@@ -53,11 +61,13 @@ const Home = () => {
         "フレームワーク(ReactやNext.js)を用いて、複雑なUIを構築できます。",
     },
     {
+      id: 3,
       firstIcon: "/ruby.svg",
       skill: "Ruby",
       firstDescription: "言語の基本的な文法を理解できます。",
     },
     {
+      id: 4,
       firstIcon: "/document.svg",
       skill: "その他資格",
       firstDescription: "TOEIC 810点",
@@ -108,7 +118,10 @@ const Home = () => {
             Career
           </div>
           {careerContents.map((content) => (
-            <div className="tb:h-[100px] h-auto flex border-b border-gray-200 text-gray-700 my-auto tb:pb-0 py-2">
+            <div
+              className="tb:h-[100px] h-auto flex border-b border-gray-200 text-gray-700 my-auto tb:pb-0 py-2"
+              key={content.id}
+            >
               <div className="tb:w-[200px] w-1/4 flex items-center tb:text-lg sp:text-lg text-xs">
                 {content.date}
               </div>
@@ -127,7 +140,7 @@ const Home = () => {
             Skills
           </div>
           {skillContents.map((content) => (
-            <>
+            <div key={content.id}>
               {content.secondIcon ? (
                 <div className="flex items-center text-gray-700 h-[130px] tb:flex-row flex-col tb:mb-0 mb-4">
                   <div className="flex flex-col tb:w-[280px] w-auto mx-auto tb:mb-0 mb-2">
@@ -183,7 +196,7 @@ const Home = () => {
                   )}
                 </>
               )}
-            </>
+            </div>
           ))}
         </section>
         <section
