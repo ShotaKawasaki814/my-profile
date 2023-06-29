@@ -58,20 +58,39 @@ const Home = () => {
       secondIcon: "/typescript.svg",
       skill: "JavaScript・TypeScript",
       firstDescription:
-        "フレームワーク(ReactやNext.js)を用いて、複雑なUIを構築できます。",
+        "基礎的な文法から、フレームワークを用いた応用的な利用法まで理解しています。",
     },
     {
       id: 3,
+      firstIcon: "/react.svg",
+      skill: "React",
+      firstDescription: "複雑なUIを実装できます。",
+    },
+    {
+      id: 4,
+      firstIcon: "/nestjs.svg",
+      skill: "Nest.js",
+      firstDescription: "基本的なAPIを構築できます。",
+    },
+    {
+      id: 5,
+      firstIcon: "/graphql.svg",
+      skill: "GraphQL・gRPC",
+      firstDescription:
+        "GraphQLやgRPCを用いた、マイクロサービスアーキテクチャの実装経験がございます。",
+    },
+    {
+      id: 6,
       firstIcon: "/ruby.svg",
       skill: "Ruby",
       firstDescription: "言語の基本的な文法を理解できます。",
     },
     {
-      id: 4,
+      id: 7,
       firstIcon: "/document.svg",
       skill: "その他資格",
       firstDescription: "TOEIC 810点",
-      secondDescription: "応用情報技術者試験 受験済み(結果待ち)",
+      secondDescription: "応用情報技術者試験 合格",
     },
   ];
 
