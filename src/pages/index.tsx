@@ -226,7 +226,7 @@ const Home = () => {
             Account
           </div>
           <a
-            href="https://github.com/ShotaKawasaki814"
+            href="https://github.com/kawaaaas"
             className="cursor-pointer flex text-gray-700"
             target="_blank"
             rel="noopener noreferrer"
