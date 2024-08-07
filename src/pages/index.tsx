@@ -1,98 +1,44 @@
+import { Career } from "@/components/career";
 import Layout from "../layout/layout";
-
-type CareerContentsType = {
-  id: number;
-  date: string;
-  content: string;
-}[];
-
-type skillContentsType = {
-  id: number;
-  firstIcon: string;
-  secondIcon?: string;
-  skill: string;
-  firstDescription: string;
-  secondDescription?: string;
-}[];
+import { Skill } from "@/components/skill";
+import {
+  AboutContentsType,
+  CareerContentsType,
+  SkillContentsType,
+} from "@/types/types";
+import { useEffect, useState } from "react";
 
 const Home = () => {
-  const careerContents: CareerContentsType = [
-    {
-      id: 1,
-      date: "2022年1月",
-      content:
-        "社会経験を身に付けたく、株式会社エス・エム・エスに長期インターンで入社",
-    },
-    {
-      id: 2,
-      date: "2022年5月",
-      content:
-        "近くでビジネスを見ることができ、広い事業範囲に関われる環境を望み、ホンダモビリティソリューションズ株式会社に長期インターンで入社",
-    },
-    {
-      id: 3,
-      date: "2023年1月",
-      content:
-        "IT業界で働くビジネスマンとして開発側の視点を持つことを目標に、ITスキルをつけることを目指し独学でRailsを学ぶ",
-    },
-    {
-      id: 4,
-      date: "2023年3月",
-      content:
-        "実務経験を積むため、フロントエンドエンジニアとしてSky株式会社に長期インターンで入社",
-    },
-  ];
+  const [aboutContent, setAboutContent] = useState<AboutContentsType>();
+  const [careerContents, setCareerContents] = useState<CareerContentsType[]>(
+    []
+  );
+  const [skillsContents, setSkillsContents] = useState<SkillContentsType[]>([]);
 
-  const skillContents: skillContentsType = [
-    {
-      id: 1,
-      firstIcon: "/html.svg",
-      secondIcon: "/css.svg",
-      skill: "html・css",
-      firstDescription:
-        "様々なタグやスタイルを用いて、デザイン通りUIを実装できます。",
-    },
-    {
-      id: 2,
-      firstIcon: "/javascript.svg",
-      secondIcon: "/typescript.svg",
-      skill: "JavaScript・TypeScript",
-      firstDescription:
-        "基礎的な文法から、フレームワークを用いた応用的な利用法まで理解しています。",
-    },
-    {
-      id: 3,
-      firstIcon: "/react.svg",
-      skill: "React",
-      firstDescription: "複雑なUIを実装できます。",
-    },
-    {
-      id: 4,
-      firstIcon: "/nestjs.svg",
-      skill: "Nest.js",
-      firstDescription: "基本的なAPIを構築できます。",
-    },
-    {
-      id: 5,
-      firstIcon: "/graphql.svg",
-      skill: "GraphQL・gRPC",
-      firstDescription:
-        "GraphQLやgRPCを用いた、マイクロサービスアーキテクチャの実装経験がございます。",
-    },
-    {
-      id: 6,
-      firstIcon: "/ruby.svg",
-      skill: "Ruby",
-      firstDescription: "言語の基本的な文法を理解できます。",
-    },
-    {
-      id: 7,
-      firstIcon: "/document.svg",
-      skill: "その他資格",
-      firstDescription: "TOEIC 810点",
-      secondDescription: "応用情報技術者試験 合格",
-    },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [aboutResponse, careerResponse, skillsResponse] =
+          await Promise.all([
+            fetch("/text/about.json"),
+            fetch("/text/career.json"),
+            fetch("/text/skills.json"),
+          ]);
+
+        const aboutData: AboutContentsType = await aboutResponse.json();
+        const careerData: CareerContentsType[] = await careerResponse.json();
+        const skillsData: SkillContentsType[] = await skillsResponse.json();
+
+        setAboutContent(aboutData);
+        setCareerContents(careerData);
+        setSkillsContents(skillsData);
+      } catch (error) {
+        console.error("データの取得に失敗しました:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Layout>
@@ -116,19 +62,9 @@ const Home = () => {
             About
           </div>
           <div className="flex flex-col justify-center tb:text-lg sp:text-lg text-sm text-gray-700">
-            <div className="mx-auto text-center">
-              2001年千葉県生まれ千葉県育ち。
-            </div>
-            <div className="mx-auto text-center">
-              早稲田大学に在学しており、環境学を学んでいます。大学に通う傍ら、1年半程長期インターンの経験があり、カーシェア運営でのビジネス経験やフロントエンドエンジニアとしての開発経験もございます。
-              IT技術とビジネスを結びつけ、技術で世の中に価値を生む上流工程やITスキルを生かせるビジネス領域にて活躍したいと考えています。
-            </div>
-            <div className="mx-auto text-center">
-              温泉やサウナに行くのが趣味です。
-            </div>
+            <div className="mx-auto text-center">{aboutContent?.content}</div>
           </div>
         </section>
-
         <section
           className="flex flex-col justify-center items-center tb:w-[850px] w-4/5 mx-auto mb-40"
           id="Career"
@@ -136,18 +72,8 @@ const Home = () => {
           <div className="tb:text-4xl sp:text-3xl text-2xl font-semibold mb-6">
             Career
           </div>
-          {careerContents.map((content) => (
-            <div
-              className="tb:h-[100px] h-auto flex border-b border-gray-200 text-gray-700 my-auto tb:pb-0 py-2"
-              key={content.id}
-            >
-              <div className="tb:w-[200px] w-1/4 flex items-center tb:text-lg sp:text-lg text-xs">
-                {content.date}
-              </div>
-              <div className="tb:w-[650px] w-3/4 flex items-center tb:text-lg sp:text-lg text-xs">
-                {content.content}
-              </div>
-            </div>
+          {careerContents.map((career, i) => (
+            <Career key={i} date={career.date} content={career.content} />
           ))}
         </section>
 
@@ -158,64 +84,14 @@ const Home = () => {
           <div className="tb:text-4xl sp:text-3xl text-2xl font-semibold mb-6">
             Skills
           </div>
-          {skillContents.map((content) => (
-            <div key={content.id}>
-              {content.secondIcon ? (
-                <div className="flex items-center text-gray-700 h-[130px] tb:flex-row flex-col tb:mb-0 mb-4">
-                  <div className="flex flex-col tb:w-[280px] w-auto mx-auto tb:mb-0 mb-2">
-                    <div className="flex justify-center mb-0">
-                      <img src={content.firstIcon} />
-                      <img src={content.secondIcon} />
-                    </div>
-                    <div className="tb:text-lg sp:text-lg text-sm mx-auto">
-                      {content.skill}
-                    </div>
-                  </div>
-                  <div className="tb:text-lg sp:text-lg text-sm tb:w-[570px]">
-                    {content.firstDescription}
-                  </div>
-                </div>
-              ) : (
-                <>
-                  {content.secondDescription ? (
-                    <div className="flex items-center text-gray-700 h-[130px] tb:flex-row flex-col tb:mb-0 mb-4">
-                      <div className="flex flex-col justify-center tb:w-[280px] w-auto mx-auto tb:mb-0 mb-2">
-                        <img
-                          src={content.firstIcon}
-                          className="w-[48px] mx-auto"
-                        />
-                        <div className="tb:text-lg sp:text-lg text-sm mx-auto">
-                          {content.skill}
-                        </div>
-                      </div>
-                      <div className="flex flex-col">
-                        <div className="tb:text-lg sp:text-lg text-sm tb:w-[570px] w-auto mx-auto">
-                          {content.firstDescription}
-                        </div>
-                        <div className="tb:text-lg sp:text-lg text-sm tb:w-[570px] w-auto mx-auto">
-                          {content.secondDescription}
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="flex items-center text-gray-700 h-[130px] tb:flex-row flex-col tb:mb-0 mb-4">
-                      <div className="flex flex-col justify-center  tb:w-[280px] w-auto mx-auto tb:mb-0 mb-2">
-                        <img
-                          src={content.firstIcon}
-                          className="w-[48px] mx-auto"
-                        />
-                        <div className="tb:text-lg sp:text-lg text-sm mx-auto">
-                          {content.skill}
-                        </div>
-                      </div>
-                      <div className="tb:text-lg sp:text-lg text-sm tb:w-[570px]">
-                        {content.firstDescription}
-                      </div>
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
+          {skillsContents.map((skills, i) => (
+            <Skill
+              key={i}
+              firstIcon={skills.firstIcon}
+              secondIcon={skills.secondIcon}
+              skill={skills.skill}
+              description={skills.description}
+            />
           ))}
         </section>
         <section
@@ -231,7 +107,7 @@ const Home = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={"/github.svg"} className="mr-2" />
+            <img src={"image/github.svg"} className="mr-2" />
             <div>Github</div>
           </a>
         </section>
