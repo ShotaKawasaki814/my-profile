@@ -1,0 +1,49 @@
+[
+  {
+    "firstIcon": "image/html.svg",
+    "secondIcon": "image/css.svg",
+    "skill": "html・css",
+    "description": "様々なタグやスタイルを用いて、デザイン通りUIを実装できます。"
+  },
+  {
+    "firstIcon": "image/js.svg",
+    "secondIcon": "image/ts.svg",
+    "skill": "JavaScript・TypeScript",
+    "description": "基礎的な文法から、フレームワークを用いた応用的な利用法まで理解しています。"
+  },
+  {
+    "firstIcon": "image/react.png",
+    "skill": "React",
+    "description": "Next.jsを含め、フレームワークを用いた複雑なUIを実装できます。"
+  },
+  {
+    "firstIcon": "image/nestjs.svg",
+    "skill": "Nest.js",
+    "description": "モダンなNode.jsのフレームワークを用い、基本的なAPIを構築できます。"
+  },
+  {
+    "firstIcon": "image/flutter.png",
+    "skill": "Flutter",
+    "description": "モバイルアプリケーションの開発ができます。"
+  },
+  {
+    "firstIcon": "image/terraform.png",
+    "skill": "Terraform",
+    "description": "IaCによる、AWSの運用を経験しています。"
+  },
+  {
+    "firstIcon": "image/aws.png",
+    "skill": "AWS",
+    "description": "AWSを用いたインフラ運用を経験しています。"
+  },
+  {
+    "firstIcon": "image/github.png",
+    "skill": "Github",
+    "description": "基本的なチーム開発から、Github Actionsを用いたCI/CDまで経験しています。"
+  },
+  {
+    "firstIcon": "image/document.svg",
+    "skill": "その他資格",
+    "description": "TOEIC 810点 \n 応用情報技術者試験 合格 \n AWS認定クラウドプラクティショナー \n AWS認定ソリューションアーキテクトアソシエイト \n 情報処理安全確保支援士 合格"
+  }
+]
