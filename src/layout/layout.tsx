@@ -31,7 +31,7 @@ const Layout = ({ children }: Props) => {
       </header>
 
       <div className="tb:hidden w-full  h-[60px] justify-end items-center  sticky top-0 bg-white z-10">
-        <img onClick={open} src="/menu.svg" className="ml-auto" />
+        <img onClick={open} src="image/menu.svg" className="ml-auto" />
       </div>
       <Modal>
         <div className="relative m-auto bg-white xs:w-[250px] xs:h-[320px]  w-[200px] h-[250px]  flex flex-col justify-center items-center text-gray-500 text-2xl">
@@ -49,7 +49,7 @@ const Layout = ({ children }: Props) => {
             </Scroll>
           ))}
           <button onClick={close} className="absolute top-1 right-1">
-            <img src="/close.svg" />
+            <img src="image/close.svg" />
           </button>
         </div>
       </Modal>
